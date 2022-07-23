@@ -1,0 +1,111 @@
+import pandas
+
+data = pandas.read_csv('Desktop/HOW_2LSS_SEX_RT_A.csv')
+
+print(data)
+
+data_ref_area = pandas.read_csv('Desktop/ref_area_en.csv', index_col='ref_area')
+
+data_ref_area = data_ref_area.rename(columns={' ref_area.label': 'ref_area_label'})
+
+data_ref_area = data_ref_area[['ref_area_label']]
+
+print(data_ref_area)
+
+
+data = data.join(data_ref_area, on=['ref_area'])
+print('=================================================================')
+
+data = data[['ref_area', 'ref_area_label', 'sex', 'time', 'obs_value']]
+print(data)
+print('=================================================================')
+print('=================================================================')
+
+print(data[
+    (data.sex == "SEX_T")
+].obs_value.max())
+
+print(data[
+    (data.sex == "SEX_T")
+].obs_value.min())
+
+print(data[
+    (data.sex == "SEX_T")
+].obs_value.mean())
+
+print(data[
+    (data.sex == "SEX_T")
+].obs_value.median())
+
+print(data[
+    (data.sex == "SEX_T")
+].sort_values(by = 'obs_value', ascending = False))
+
+print(data[
+    (data.sex == "SEX_T")
+].sort_values(by = 'obs_value', ascending = True))
+print('=================================================================')
+print('=================================================================')
+
+print(data[
+    (data.sex == "SEX_M")&
+    (data.time == 2020)
+].obs_value.max())
+
+print(data[
+    (data.sex == "SEX_M")&
+    (data.time == 2020)
+].obs_value.min())
+
+print(data[
+    (data.sex == "SEX_M")&
+    (data.time == 2020)
+].obs_value.mean())
+
+print(data[
+    (data.sex == "SEX_M")&
+    (data.time == 2020)
+].obs_value.median())
+
+print(data[
+    (data.sex == "SEX_M")&
+    (data.time == 2020)
+].sort_values(by = 'obs_value', ascending = False))
+
+print(data[
+    (data.sex == "SEX_M")&
+    (data.time == 2020)
+].sort_values(by = 'obs_value', ascending = True))
+
+print('=================================================================')
+print('=================================================================')
+
+print(data[
+    (data.sex == "SEX_F")&
+    (data.time == 2021)
+].obs_value.max())
+
+print(data[
+    (data.sex == "SEX_F")&
+    (data.time == 2021)
+].obs_value.min())
+
+print(data[
+    (data.sex == "SEX_F")&
+    (data.time == 2021)
+].obs_value.mean())
+
+print(data[
+    (data.sex == "SEX_F")&
+    (data.time == 2021)
+].obs_value.median())
+
+print(data[
+    (data.sex == "SEX_F")&
+    (data.time == 2021)
+].sort_values(by = 'obs_value', ascending = False))
+
+print(data[
+    (data.sex == "SEX_F")&
+    (data.time == 2021)
+].sort_values(by = 'obs_value', ascending = True))
