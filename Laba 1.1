@@ -1,0 +1,159 @@
+import pandas
+
+data = pandas.read_csv('Desktop/EAR_4MTH_SEX_ECO_CUR_NB_A.csv')
+
+data = data[['ref_area', 'sex', 'classif1', 'classif2', 'time', 'obs_value']]
+
+data = data[(data.ref_area != 'BLR') & (data.ref_area != 'ZWE')]
+
+print(data[
+    (data.classif1 == "ECO_AGGREGATE_TOTAL")&
+    (data.sex == "SEX_M")&
+    (data.classif2 == "CUR_TYPE_USD")
+].obs_value.max())
+
+print(data[
+    (data.classif1 == "ECO_AGGREGATE_TOTAL")&
+    (data.sex == "SEX_M")&
+    (data.classif2 == "CUR_TYPE_USD")
+].obs_value.min())
+
+print(data[
+    (data.classif1 == "ECO_AGGREGATE_TOTAL")&
+    (data.sex == "SEX_M")&
+    (data.classif2 == "CUR_TYPE_USD")
+].obs_value.mean())
+
+print(data[
+    (data.classif1 == "ECO_AGGREGATE_TOTAL")&
+    (data.sex == "SEX_M")&
+    (data.classif2 == "CUR_TYPE_USD")
+].obs_value.median())
+
+print(data[
+    (data.classif1 == "ECO_AGGREGATE_TOTAL")&
+    (data.sex == "SEX_M")&
+    (data.classif2 == "CUR_TYPE_USD")
+].sort_values(by='obs_value', ascending = False)[:10])
+
+print(data[
+    (data.classif1 == "ECO_AGGREGATE_TOTAL")&
+    (data.sex == "SEX_M")&
+    (data.classif2 == "CUR_TYPE_USD")
+].sort_values(by='obs_value', ascending = True)[:10])
+
+print('==============================================================================')
+
+
+print(data[
+    (data.classif1 == "ECO_AGGREGATE_TOTAL")&
+    (data.sex == "SEX_F")&
+    (data.classif2 == "CUR_TYPE_USD")
+].obs_value.max())
+
+print(data[
+    (data.classif1 == "ECO_AGGREGATE_TOTAL")&
+    (data.sex == "SEX_F")&
+    (data.classif2 == "CUR_TYPE_USD")
+].obs_value.min())
+
+print(data[
+    (data.classif1 == "ECO_AGGREGATE_TOTAL")&
+    (data.sex == "SEX_F")&
+    (data.classif2 == "CUR_TYPE_USD")
+].obs_value.mean())
+
+print(data[
+    (data.classif1 == "ECO_AGGREGATE_TOTAL")&
+    (data.sex == "SEX_F")&
+    (data.classif2 == "CUR_TYPE_USD")
+].obs_value.median())
+
+print(data[
+    (data.classif1 == "ECO_AGGREGATE_TOTAL")&
+    (data.sex == "SEX_F")&
+    (data.classif2 == "CUR_TYPE_USD")
+].sort_values(by='obs_value', ascending = False)[:10])
+
+print(data[
+    (data.classif1 == "ECO_AGGREGATE_TOTAL")&
+    (data.sex == "SEX_F")&
+    (data.classif2 == "CUR_TYPE_USD")
+].sort_values(by='obs_value', ascending = True)[:10])
+
+
+print('==============================================================================')
+
+print(data[
+    (data.classif1 == "ECO_ISIC2_TOTAL")&
+    (data.sex == "SEX_M")&
+    (data.classif2 == "CUR_TYPE_USD")
+].obs_value.max())
+
+print(data[
+    (data.classif1 == "ECO_ISIC2_TOTAL")&
+    (data.sex == "SEX_M")&
+    (data.classif2 == "CUR_TYPE_USD")
+].obs_value.min())
+
+print(data[
+    (data.classif1 == "ECO_ISIC2_TOTAL")&
+    (data.sex == "SEX_M")&
+    (data.classif2 == "CUR_TYPE_USD")
+].obs_value.mean())
+
+print(data[
+    (data.classif1 == "ECO_ISIC2_TOTAL")&
+    (data.sex == "SEX_M")&
+    (data.classif2 == "CUR_TYPE_USD")
+].obs_value.median())
+
+print(data[
+    (data.classif1 == "ECO_ISIC2_TOTAL")&
+    (data.sex == "SEX_M")&
+    (data.classif2 == "CUR_TYPE_USD")
+].sort_values(by='obs_value', ascending = False)[:10])
+
+print(data[
+    (data.classif1 == "ECO_ISIC2_TOTAL")&
+    (data.sex == "SEX_M")&
+    (data.classif2 == "CUR_TYPE_USD")
+].sort_values(by='obs_value', ascending = True)[:10])
+
+print('==============================================================================')
+
+print(data[
+    (data.classif1 == "ECO_ISIC2_TOTAL")&
+    (data.sex == "SEX_F")&
+    (data.classif2 == "CUR_TYPE_USD")
+].obs_value.max())
+
+print(data[
+    (data.classif1 == "ECO_ISIC2_TOTAL")&
+    (data.sex == "SEX_F")&
+    (data.classif2 == "CUR_TYPE_USD")
+].obs_value.min())
+
+print(data[
+    (data.classif1 == "ECO_ISIC2_TOTAL")&
+    (data.sex == "SEX_F")&
+    (data.classif2 == "CUR_TYPE_USD")
+].obs_value.mean())
+
+print(data[
+    (data.classif1 == "ECO_ISIC2_TOTAL")&
+    (data.sex == "SEX_F")&
+    (data.classif2 == "CUR_TYPE_USD")
+].obs_value.median())
+
+print(data[
+    (data.classif1 == "ECO_ISIC2_TOTAL")&
+    (data.sex == "SEX_F")&
+    (data.classif2 == "CUR_TYPE_USD")
+].sort_values(by='obs_value', ascending = False)[:10])
+
+print(data[
+    (data.classif1 == "ECO_ISIC2_TOTAL")&
+    (data.sex == "SEX_F")&
+    (data.classif2 == "CUR_TYPE_USD")
+].sort_values(by='obs_value', ascending = True)[:10])
