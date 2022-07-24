@@ -1,0 +1,49 @@
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas
+
+plt.rc('font', size=18)
+
+X = np.linspace(0,1)
+Y = X**3 - X**2 - 2
+
+plt.plot(X, Y)
+plt.show()
+print(Y)
+print('======================================================================')
+print(X)
+
+data = pandas.read_csv('Desktop/EAR_4MTH_SEX_ECO_CUR_NB_A.csv')
+print('======================================================================')
+
+data = data [ (data.ref_area != "BLR") & (data.ref_area != "ZWE")]
+data = data[ ['ref_area', 'sex', 'classif1', 'classif2', 'time', 'obs_value']]
+data = data [ (data.classif1 == "ECO_AGGREGATE_TOTAL") & (data.sex == "SEX_T")]
+
+data_rus = data[data.ref_area == "RUS"]
+data_rus = data_rus.set_index('time').sort_index()
+
+print(data_rus[data_rus.classif2 == "CUR_TYPE_USD"]['obs_value'].plot(kind = 'bar'))
+
+ax = data_rus[data_rus.classif2 == "CUR_TYPE_USD"]['obs_value'].plot(
+title='Среднемесячная зарплата в России по годам', kind='bar')
+ax.legend(['Среднемесячная зарплата (USD)'])
+
+pivot = data_rus.pivot_table(
+values='obs_value',
+index='time',
+columns='classif2')
+print(pivot)
+print('===========================================================')
+pivot.plot(
+title='Среднемесячная зарплата в России по годам',
+kind='bar',
+logy=True,
+subplots=True)
+
+pivot.loc[
+    pivot.index <= 1996, "CUR_TYPE_LCU"] /= 1000
+pivot.plot(
+title='Среднемесячная зарплата в России по годам',
+kind='bar',
+subplots=True)
