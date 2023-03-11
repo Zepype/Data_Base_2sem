@@ -1,0 +1,136 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+data = pd.read_csv("C:/Users/Anton/Desktop/leetcode_dataset - lc.csv")  # Get data from .CSV file
+
+print(data.head())  # To show the first five rows of dataset
+
+"""
+   id  ...                                  similar_questions
+0   1  ...  [3Sum, /problems/3sum/, Medium], [4Sum, /probl...
+1   2  ...  [Multiply Strings, /problems/multiply-strings/...
+2   3  ...  [Longest Substring with At Most Two Distinct C...
+3   4  ...                                                NaN
+4   5  ...  [Shortest Palindrome, /problems/shortest-palin...
+
+"""
+print(data.tail())  # To show the last five rows of dataset
+
+"""
+        id  ...                                  similar_questions
+1820  1821  ...                                                NaN
+1821  1822  ...                                                NaN
+1822  1823  ...                                                NaN
+1823  1824  ...            [Frog Jump, /problems/frog-jump/, Hard]
+1824  1825  ...  [Find Median from Data Stream, /problems/find-...
+
+"""
+print(data.columns)  # To show the columns of given dataset
+
+"""
+[5 rows x 19 columns]
+Index(['id', 'title', 'description', 'is_premium', 'difficulty',
+       'solution_link', 'acceptance_rate', 'frequency', 'url', 'discuss_count',
+       'accepted', 'submissions', 'companies', 'related_topics', 'likes',
+       'dislikes', 'rating', 'asked_by_faang', 'similar_questions'],
+      dtype='object')
+      
+"""
+
+data.__delitem__("asked_by_faang")  # To delete the given column | FAANG means Facebook, Apple, Amazon, Google
+"""
+Index(['id', 'title', 'description', 'is_premium', 'difficulty',
+       'solution_link', 'acceptance_rate', 'frequency', 'url', 'discuss_count',
+       'accepted', 'submissions', 'companies', 'related_topics', 'likes',
+       'dislikes', 'rating', 'similar_questions'],
+      dtype='object')
+      
+"""
+sum_of_premium_tasks = 0
+for i in data["is_premium"]:
+    if i == 1:
+        sum_of_premium_tasks += 1
+
+print(sum_of_premium_tasks)  # To show the count of premium tasks on the Leetcode
+
+"""
+398
+
+"""
+
+print(data["solution_link"].value_counts())  # To show the count of non-null solutions links
+
+"""
+/articles/two-sum                            1
+/articles/swap-adjacent-in-lr-string         1
+/articles/k-th-symbol-in-grammar             1
+/articles/reaching-points                    1
+/articles/rabbits-in-forest                  1
+                                            ..
+/articles/sum-of-left-leaves                 1
+/articles/queue-reconstruction-by-height     1
+/articles/longest-palindrome                 1
+/articles/split-array-largest-sum            1
+/articles/swapping-nodes-in-a-linked-list    1
+Name: solution_link, Length: 987, dtype: int64
+
+"""
+
+pd.set_option('display.max_columns', None)  # To remove the limit of displaying columns
+print(data.describe())  # To show some numerical statistics
+
+"""
+count  1825.000000  1825.000000      1825.000000  1825.000000    1825.000000   
+mean    913.000000     0.218082        53.139616    21.113041     421.435068   
+std     526.976438     0.413057        14.778411    22.364741     330.583617   
+min       1.000000     0.000000        13.900000     0.000000       9.000000   
+25%     457.000000     0.000000        42.400000     3.100000     150.000000   
+50%     913.000000     0.000000        51.600000    13.500000     292.000000   
+75%    1369.000000     0.000000        62.800000    31.800000     663.000000   
+max    1825.000000     1.000000        95.600000   100.000000     999.000000   
+
+              likes     dislikes       rating  
+count   1825.000000  1825.000000  1825.000000  
+mean    1050.534795   279.010959    77.391233  
+std     1512.674013   608.489206    23.317515  
+min        2.000000     0.000000     7.000000  
+25%      217.000000    32.000000    67.000000  
+50%      516.000000    92.000000    88.000000  
+75%     1200.000000   239.000000    95.000000  
+max    20217.000000  8900.000000   100.000000  
+
+"""
+
+print(data["companies"].value_counts()[:7])  # To show the first six companies which were tagged as having asked this specific problem
+
+"""
+Google       257
+Amazon       224
+Facebook     101
+Microsoft     65
+Bloomberg     32
+Uber          25
+Apple         22
+
+"""
+
+
+plt.figure(figsize=(12, 10), dpi=80)
+sns.heatmap(data.corr(), xticklabels=data.corr().columns, yticklabels=data.corr().columns, cmap='RdYlGn', center=0,
+           annot=True)
+
+# Decorations
+plt.title('Correlogram of Tasks', fontsize=22)  # Correlation heatmap
+plt.xticks(fontsize=12)
+plt.yticks(fontsize=12)
+plt.show()
+
+print("===================================================================================================")
+
+sample1 = data["likes"]
+sample2 = data["dislikes"]
+plt.hist(sample1, bins=50, label='likes')
+plt.hist(sample2, bins=50, label='dislikes')
+plt.legend(loc='upper right')
+plt.show()  # To show the histograms with likes & dislikes sections
